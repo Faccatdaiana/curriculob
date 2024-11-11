@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const xss = require('xss');
-const db = require('./db'); // Conexão ao banco
+const db = require('./db'); 
 const app = express();
 
 app.use(bodyParser.json());
@@ -25,7 +25,7 @@ function validarCurriculo(req, res, next) {
   next();
 }
 
-// Rota para cadastrar um novo currículo
+// Cadastrar currículo
 app.post('/api/curriculos', validarCurriculo, async (req, res) => {
   const { nome, telefone, email, enderecoWeb, experienciaProfissional } = req.body;
   try {
@@ -40,7 +40,7 @@ app.post('/api/curriculos', validarCurriculo, async (req, res) => {
   }
 });
 
-// Rota para listar todos os currículos
+// Todos os currículos
 app.get('/api/curriculos', async (req, res) => {
   try {
     const curriculos = await db.any('SELECT * FROM curriculos');
@@ -50,10 +50,10 @@ app.get('/api/curriculos', async (req, res) => {
   }
 });
 
-// Rota para visualizar um currículo específico
+// Currículo específico
 app.get('/api/curriculos/:id', async (req, res) => {
   try {
-    const id = parseInt(req.params.id); // Garantir que o ID seja um número
+    const id = parseInt(req.params.id); 
     if (isNaN(id)) {
       return res.status(400).json({ message: 'ID inválido' });
     }
