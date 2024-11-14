@@ -3,7 +3,7 @@ const pgp = require('pg-promise')();
 
 
 if (!process.env.DB_HOST || !process.env.DB_PORT || !process.env.DB_NAME || !process.env.DB_USER || !process.env.DB_PASSWORD) {
-  throw new Error("Por favor, defina todas as variáveis de ambiente para conexão com o banco de dados no arquivo .env");
+  throw new Error("Por favor, defina todas as variáveis de ambiente");
 }
 
 const db = pgp({
